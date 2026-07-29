@@ -29,7 +29,9 @@ connectionDB();
 
 /* /auth/ */
 import AuthRouter from './routes/auth.route.js';
-app.use('/auth',AuthRouter)
+import StaffRouter from './routes/staff.route.js';
+app.use('/auth',AuthRouter);
+app.use('/staff',StaffRouter)
 
 
 

@@ -37,6 +37,7 @@ async function AuthRegister(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
+        role:user.role
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
@@ -48,6 +49,7 @@ async function AuthRegister(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
+         role:user.role
       },
       process.env.REFRSH_TOKEN_SECRET,
       {
@@ -99,6 +101,7 @@ async function loginUser(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
+        role:user.role
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
@@ -110,6 +113,7 @@ async function loginUser(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
+         role:user.role
       },
       process.env.REFRSH_TOKEN_SECRET,
       {
