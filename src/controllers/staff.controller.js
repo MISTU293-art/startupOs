@@ -74,7 +74,7 @@ async function updateStaff(req, res) {
     const { status, address, qualification, salary } = req.body;
 
     const user = await StaffModel.findOne({ _id });
-    console.log(user)
+    console.log(user);
     if (!user) {
       return res.status(404).json({
         message: "Staff Not Found",
@@ -95,9 +95,9 @@ async function updateStaff(req, res) {
     );
 
     return res.status(200).json({
-      message:"Staff Details Updated",
-      updatedData
-    })
+      message: "Staff Details Updated",
+      updatedData,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -105,4 +105,5 @@ async function updateStaff(req, res) {
     });
   }
 }
-export { registerStaff, staffDetails ,updateStaff};
+
+export { registerStaff, staffDetails, updateStaff };

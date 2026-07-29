@@ -37,7 +37,7 @@ async function AuthRegister(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
-        role:user.role
+        role: user.role,
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
@@ -49,7 +49,7 @@ async function AuthRegister(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
-         role:user.role
+        role: user.role,
       },
       process.env.REFRSH_TOKEN_SECRET,
       {
@@ -101,7 +101,7 @@ async function loginUser(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
-        role:user.role
+        role: user.role,
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
@@ -113,7 +113,7 @@ async function loginUser(req, res) {
         _id: user._id,
         username: user.username,
         email: user.email,
-         role:user.role
+        role: user.role,
       },
       process.env.REFRSH_TOKEN_SECRET,
       {
@@ -161,13 +161,55 @@ async function logOut(req, res) {
     });
 
     return res.status(200).json({
-        message:"Logout SuccessFully"
-    })
+      message: "Logout SuccessFully",
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-        message:"Can't Logout Please Try After Sometime later. "
-    })
+      message: "Can't Logout Please Try After Sometime later. ",
+    });
   }
 }
-export { AuthRegister, loginUser,logOut };
+
+async function blockedStaff(req, res) {
+  try {
+    const _id = req.params._id;
+    const { status } = req.body;
+    const user = await accessModel.findById(_id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User Not Found",
+      });
+    }
+    const updateStatus = await accessModel.findByIdAndUpdate(
+      _id,
+      { status },
+      { new: true },
+    );
+    return res.status(200).json({
+      message: "User Status Updated",
+      updateStatus,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Internal Server Error.",
+    });
+  }
+}
+
+async function allStaffAccessPage(req, res) {
+  try {
+    const allAccessStaff = await accessModel.find();
+    return res.status(200).json({
+      message: "All Staff Fetched",
+      allAccessStaff
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+}
+
+export { AuthRegister, loginUser, logOut, blockedStaff,allStaffAccessPage };
