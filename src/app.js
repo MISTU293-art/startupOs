@@ -26,7 +26,10 @@ app.use(limiter);
 app.use(cookieParser());
 connectionDB();
 // all routes 
-
+//home route
+app.get('/',(req,res)=>{
+  res.json("hello")
+})
 /* /auth/ */
 import AuthRouter from './routes/auth.route.js';
 import StaffRouter from './routes/staff.route.js';
