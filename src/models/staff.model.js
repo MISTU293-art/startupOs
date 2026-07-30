@@ -68,6 +68,11 @@ const staffRegisterSchema = new mongoose.Schema(
       ref: "accessModel",
       required: true,
     },
+    status:{
+      type:String,
+      enum:["active","blocked"],
+      default:"active"
+    }
   },
   {
     timestamps: true,

@@ -203,6 +203,7 @@ async function allStaffAccessPage(req, res) {
     const allAccessStaff = await accessModel.find();
     return res.status(200).json({
       message: "All Staff Fetched",
+      totalAccessStaff:allAccessStaff.length,
       allAccessStaff
     });
   } catch (error) {

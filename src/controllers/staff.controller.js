@@ -58,6 +58,7 @@ async function staffDetails(req, res) {
     );
     return res.status(200).json({
       message: "All Staffs Fetched SuccessFully",
+      totalEmployee:employee.length,
       employee,
     });
   } catch (error) {
@@ -105,5 +106,6 @@ async function updateStaff(req, res) {
     });
   }
 }
+
 
 export { registerStaff, staffDetails, updateStaff };

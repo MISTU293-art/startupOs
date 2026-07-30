@@ -30,8 +30,12 @@ connectionDB();
 /* /auth/ */
 import AuthRouter from './routes/auth.route.js';
 import StaffRouter from './routes/staff.route.js';
+import HrRouter from './routes/hr.routes.js'
+import EmployeeRouter from './routes/employee.routes.js'
 app.use('/auth',AuthRouter);
-app.use('/staff',StaffRouter)
+app.use('/staff',StaffRouter);
+app.use('/hr',HrRouter);
+app.use('/employee',EmployeeRouter)
 
 
 
